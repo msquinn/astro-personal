@@ -1,0 +1,47 @@
+---
+layout: "../layouts/Layout.astro"
+---
+
+import AvatarDemo from "@/components/avatar-demo.tsx";
+import Highlight from "@/components/ui/highlight.tsx";
+import { Separator }  from "@/components/ui/separator.tsx";
+import Contact from '@/components/Contact.tsx';
+import Money from '@/components/Money.tsx';
+import { KeyRoundIcon } from 'lucide-react';
+
+<div class="m-3 flex flex-col items-center">
+	{/* <AvatarDemo client:load /> */}
+  <div class="flex">
+    <h1 class="text-4xl font-bold text-center">matt</h1>
+    <h1 class="text-4xl font-bold text-center">quinn</h1>
+    <h1 class="text-4xl font-bold text-center text-pink-600">.</h1>
+    <h1 class="text-4xl font-bold text-center">dev</h1>
+  </div>
+  <div class="flex items-center"><div class>📍 Chicago, IL</div><Separator className="h-5 mx-2" orientation="vertical" /> <div>🌐 Remote</div></div>
+</div>
+
+<div class="w-full max-w-md font-mono px-2">
+Hey, I'm Matt. I'm a software engineer formerly at <Highlight>[Patch Data][patch]</Highlight>.
+I've spent the last 5 years building out web apps in <Highlight variant="blue">[Typescript][typescript]</Highlight>,<Highlight variant="violet">[React][react]</Highlight>, and various other technologies including <Highlight variant="yellow">[Node.js][node]</Highlight>, <Highlight variant="teal">[GraphQL][graphql]</Highlight>, Next.js, Astro and Postgres.
+I'm currently looking for my next opportunity leading a team of engineers to build out a great product with good people. If you're hiring, feel free to reach out!
+<p class="my-8">This website was built with Astro, Tailwind, React, Typescript, <Highlight variant="black">[shadcn/ui][shadcn]</Highlight>, and Markdown. Highlighting is inspired by <Highlight variant="indigo">[Rehype-Pretty-Code][pretty]</Highlight>.</p>
+</div>
+
+<div class="flex items-center">
+  <Contact/>
+  <Separator orientation="vertical" className="h-5 mx-3" />
+  <Money client:only="react" />  
+  <Separator orientation="vertical" className="h-5 mx-3" />
+  <a href="https://keys.openpgp.org/vks/v1/by-fingerprint/F53DCCB3DEEAAEBFDB94932D32E721F8F1B817B4" aria-label="pgp">
+    <KeyRoundIcon className='h-5 w-5 hover:scale-150 hover:bg-transparent transition-transform' />
+  </a>
+</div>
+
+[patch]: https://patch.tech
+[astro]: https://astro.build
+[typescript]: https://typescript.org
+[react]: https://reactjs.org
+[node]: https://nodejs.org
+[graphql]: https://graphql.org
+[pretty]:https://rehype-pretty-code.netlify.app/ 
+[shadcn]:https://ui.shadcn.com/
