@@ -18,11 +18,11 @@ async function onClickEth() {
 const Money = () => {
   return (
     <div className='flex items-center space-x-2'>
-        <Button className='sm:p-0 p-1 h-6 w-6 sm:hover:scale-150 sm:hover:bg-transparent sm:transition-transform' onClick={onClickBtc} variant="ghost">
-            <Bitcoin />
+        <Button className='sm:p-0 p-1 h-5 w-5 sm:hover:scale-150 sm:hover:bg-transparent sm:transition-transform' onClick={onClickBtc} variant="ghost">
+            <Bitcoin className='stroke-muted-foreground hover:stroke-foreground' />
         </Button>
-        <Button className='sm:p-0 p-1 h-6 w-6 sm:hover:scale-150 sm:hover:bg-transparent sm:transition-transform' onClick={onClickEth} variant="ghost">
-            <Eth className='h-full w-full fill-foreground' />
+        <Button className='sm:p-0 p-1 h-5 w-5 sm:hover:scale-150 sm:hover:bg-transparent sm:transition-transform' onClick={onClickEth} variant="ghost">
+            <Eth className='h-full w-full fill-muted-foreground hover:fill-foreground' />
         </Button>
     </div>
   )
