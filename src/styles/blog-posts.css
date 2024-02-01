@@ -1,0 +1,11 @@
+.prose {
+	li {
+		list-style: circle;
+		margin-left: 2rem;
+	}
+  a {
+    color: #007acc;
+    text-decoration: underline;
+    transition: color 0.15s;
+  }
+}

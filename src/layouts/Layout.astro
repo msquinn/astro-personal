@@ -1,62 +1,95 @@
 ---
-import '../../globals.css';
-import { ModeToggle } from '@/components/ModeToggle';
-import { Toaster } from "@/components/ui/sonner"
+import "../../globals.css";
+import { ModeToggle } from "@/components/ModeToggle";
+import { Toaster } from "@/components/ui/sonner";
+import { CrumpledPaperIcon, ResetIcon } from "@radix-ui/react-icons";
 interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
+
+const path = Astro.url.pathname;
+
+const isBlog = path.startsWith("/blog");
 ---
+
 <script is:inline>
-	const getThemePreference = () => {
-		if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-			return localStorage.getItem('theme');
-		}
-		return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-	};
-	const isDark = getThemePreference() === 'dark';
-	document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
- 
-	if (typeof localStorage !== 'undefined') {
-		const observer = new MutationObserver(() => {
-			const isDark = document.documentElement.classList.contains('dark');
-			localStorage.setItem('theme', isDark ? 'dark' : 'light');
-		});
-		observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-	}
+  const getThemePreference = () => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
+    }
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  };
+  const isDark = getThemePreference() === "dark";
+  document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+
+  if (typeof localStorage !== "undefined") {
+    const observer = new MutationObserver(() => {
+      const isDark = document.documentElement.classList.contains("dark");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+  }
 </script>
-<!doctype html>
 <html lang="en">
-	<head>
-		<!-- Google tag (gtag.js) -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-BQP6K1WTGS"></script>
-		<script>
-		//@ts-ignore
-		(window as any).dataLayer = window.dataLayer || [];
-		//@ts-ignore
-		function gtag(){window.dataLayer.push(arguments);}
-		//@ts-ignore
-		gtag('js', new Date());
-		//@ts-ignore
-		gtag('config', 'G-BQP6K1WTGS');
-		</script>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body class="flex flex-col items-center h-screen bg-background w-full">
-		<Toaster client:load richColors position="top-center"/>
-		<div class="flex w-full justify-end max-w-3xl">
-			<div class="ml-auto m-2">
-				<ModeToggle client:only="react"/>
-			</div>
-		</div>
-			<div class="flex flex-col items-center h-full bg-background">
-				<slot />
-			</div>
-	</body>
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BQP6K1WTGS"
+    ></script>
+    <script>
+      //@ts-ignore
+      (window as any).dataLayer = window.dataLayer || [];
+      function gtag() {
+        //@ts-ignore
+        window.dataLayer.push(arguments);
+      }
+      //@ts-ignore
+      gtag("js", new Date());
+      //@ts-ignore
+      gtag("config", "G-BQP6K1WTGS");
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="flex flex-col items-center h-screen bg-background w-full">
+    <Toaster client:load richColors position="top-center" />
+    <div class="flex w-full justify-center mb-3 max-w-3xl">
+      <div
+        class="flex items-center justify-center text-xs text-muted-foreground font-serif m-4"
+      >
+        {
+          !isBlog && (
+            <a class="flex group rounded-lg p-1 hover:underline" href="/blog">
+              <CrumpledPaperIcon className="mx-1" />
+              blog.
+            </a>
+          )
+        }{
+          isBlog && (
+            <a class="flex group rounded-lg p-1 hover:underline" href="/">
+              <ResetIcon />
+            </a>
+          )
+        }
+      </div>
+      <div class="p-2 ml-auto">
+        <ModeToggle client:only="react" />
+      </div>
+    </div>
+    <div
+      class="flex flex-col max-w-md w-full items-center h-full bg-background"
+    >
+      <slot />
+    </div>
+  </body>
 </html>

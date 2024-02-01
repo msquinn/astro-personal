@@ -1,0 +1,32 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import { CrumpledPaperIcon, ResetIcon } from "@radix-ui/react-icons";
+
+const posts = await getCollection("posts");
+---
+
+<Layout title="blog">
+  <div class="flex flex-col w-full text-muted-foreground">
+    <div class="flex font-serif items-center text-2xl group">
+      <CrumpledPaperIcon className="mx-1 h-8 w-8" />
+      blog<span class="text-muted group-hover:text-pink-600">s</span>.
+    </div>
+    <div class="w-full flex flex-col mt-10">
+      <ul>
+        {
+          posts.map((post) => (
+            <li class="w-full items-center justify-between hover:underline font-extralight font-mono text-sm">
+              <a class="w-full" href={`/posts/${post.slug}`}>
+                {post.data.title}
+                <span class="text-xs font-extralight">
+                  {post.data.pubDate.toLocaleString()}
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</Layout>

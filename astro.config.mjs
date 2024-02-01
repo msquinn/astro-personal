@@ -11,10 +11,12 @@ export default defineConfig({
   integrations: [icon(),react(), 
     tailwind({
       applyBaseStyles: false,
+      nesting: true,
     }), 
     mdx(
       {
         syntaxHighlight: false,
+        gfm: true,
         rehypePlugins: [[rehypePrettyCode,{
               theme: "dracula",
         }]],

@@ -61,12 +61,22 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "swing-down": {
+          "0%": {
+            transform: "translate(0,0) rotate(0,0)",
+          },
+          "50%": {
+            transform: "translateX(-10px) rotate(-90deg)"
+          },
+          to: { transform: "translateX(-10px) translateY(20px) rotate(-180deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "swing-down": "swing-down 1s ease-in",
       },
     },
   },
   plugins: [require("tailwindcss-animate")],
-}
+};
