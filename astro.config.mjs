@@ -20,7 +20,6 @@ export default defineConfig({
         rehypePlugins: [[rehypePrettyCode,{
               theme: "dracula",
         }]],
-      
       }
     )],
 });

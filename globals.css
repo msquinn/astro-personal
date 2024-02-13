@@ -87,6 +87,16 @@ code {
   @apply text-sm md:text-base !leading-loose;
 }
 
+pre {
+  overflow-x: auto;
+  padding: 1rem 0;
+  @apply my-3;
+}
+ 
+pre [data-line] {
+  padding: 0 1rem;
+}
+
 pre > code {
   counter-reset: line;
 }
@@ -150,5 +160,5 @@ pre [data-line] {
 }
 
 [data-rehype-pretty-code-title] {
-  @apply bg-zinc-700 text-zinc-200 rounded-t-lg py-2 px-3 font-semibold text-sm;
+  @apply flex items-end w-full justify-end bg-background text-muted-foreground font-mono text-sm font-extralight p-2 rounded-t-lg pb-0 -mb-9;
 }
